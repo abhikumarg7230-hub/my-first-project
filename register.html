@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
   <title>Register</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: Arial;
+    }
+
+    fieldset {
+      width: 350px;
+      border: 3px solid #4CAF50;   /* Border */
+      border-radius: 10px;
+      background-color: #eaffea;   /* Inside color */
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2e7d32;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      border: 1px solid #888;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+  </style>
 </head>
+
 <body>
-  
- 
+  <form onsubmit="register(); return false;">
     <center>
       <fieldset>
-  <h2>Register</h2>
-  <input id="name" placeholder="Name"><br><br>
-  <input id="email" placeholder="Email"><br><br>
-  <input id="mobile" placeholder="Mobile"><br><br>
-  <input id="loginid" placeholder="Login ID"><br><br>
-  <input id="password" type="password" placeholder="Password"><br><br>
-  <button onclick="register()">Register</button>
+        <h2>Register</h2>
+        <input id="name" placeholder="Name"><br><br>
+        <input id="email" placeholder="Email"><br><br>
+        <input id="mobile" placeholder="Mobile"><br><br>
+        <input id="loginid" placeholder="Login ID"><br><br>
+        <input id="password" type="password" placeholder="Password"><br><br>
+        <button type="submit">Register</button>
+      </fieldset>
+    </center>
+  </form>
 
   <script>
     function register(){
@@ -32,9 +71,5 @@
       window.location.href = "login.html";
     }
   </script>
-  </fieldset>
-  </center>
- 
-  
 </body>
 </html>
