@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Excel Search</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    td, th {
+      border: 1px solid black;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <center>
+  <fieldset>
+    <center>
+<h2>Upload Excel File</h2>
+<input type="file" id="file">
+</center>
+
+<h3>Search Unique Code</h3>
+<input type="text" id="code" placeholder="Enter Unique Code">
+<button onclick="search()">Search</button>
+
+<table id="resultTable"></table>
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script>
+let data = [];
+
+document.getElementById("file").addEventListener("change", function(e){
+  let reader = new FileReader();
+  reader.onload = function(e){
+    let workbook = XLSX.read(e.target.result, {type:'binary'});
+    let sheet = workbook.Sheets[workbook.SheetNames[0]];
+    data = XLSX.utils.sheet_to_json(sheet);
+    alert("Excel Loaded");
+    console.log(data); // debugging
+  }
+  reader.readAsBinaryString(e.target.files[0]);
+});
+
+function search(){
+  let uc = document.getElementById("code").value.trim();
+  let table = document.getElementById("resultTable");
+  table.innerHTML = "";
+
+  if(data.length == 0){
+    alert("Please upload Excel first");
+    return;
+  }
+
+  let row = data.find(r => String(r.UniqueCode) === uc);
+
+  if(row){
+    let header = table.insertRow();
+    header.innerHTML = "<th>Field</th><th>Value</th>";
+
+    for(let key in row){
+      let tr = table.insertRow();
+      tr.insertCell(0).innerText = key;
+      tr.insertCell(1).innerText = row[key];
+    }
+  } else {
+    table.innerHTML = "<tr><td>No Record Found</td></tr>";
+  }
+}
+</script>
+</fieldset>
+</center>
+
+</body>
+</html>
