@@ -1,3 +1,20 @@
- body fieldset{
-    background: #c4bcbc;
+body{
+    background-color: #df9797;
+}
+form{
+    display:grid;
+    place-items:center;
+}
+ .shap{
+    border-radius:50px;
+}
+fieldset{
+    background-color: #421ed3;
+}
+div{
+    font-size: 32px;
+    width: 300px;
+    height: 10px;
+    background-color: #8e1818;
+    padding: 30px;
 }
