@@ -1,0 +1,206 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Abhishek Portfolio</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
+
+/* Navbar */
+nav{
+display:flex;
+justify-content:space-between;
+padding:15px 50px;
+background:#020617;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+}
+
+/* Hero */
+.hero{
+text-align:center;
+padding:100px 20px;
+}
+
+.hero span{
+color:#38bdf8;
+}
+
+/* Section */
+section{
+padding:40px;
+margin:20px;
+background:#1e293b;
+border-radius:10px;
+}
+
+/* Button */
+.btn{
+display:inline-block;
+padding:10px 20px;
+background:#38bdf8;
+color:black;
+border-radius:5px;
+cursor:pointer;
+border:none;
+}
+
+/* Download Link */
+#downloadLink{
+display:none;
+margin-top:15px;
+background:#38bdf8;
+color:black;
+padding:10px 20px;
+border-radius:5px;
+text-decoration:none;
+}
+
+/* Footer */
+footer{
+text-align:center;
+padding:20px;
+background:#020617;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h2>My Profile</h2>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Hello, I'm <span>Abhishek Kumar Sharma</span></h1>
+<p>ECE Student | Future Engineer</p>
+
+<a id="downloadLink">Download Uploaded Resume</a>
+</div>
+
+<section>
+<h2>Upload Resume</h2>
+
+<input type="file" id="resumeFile">
+<br><br>
+
+<button class="btn" onclick="uploadResume()">Upload</button>
+
+<p id="message"></p>
+
+<a id="downloadLink">Download Uploaded Resume</a>
+
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<p>I am an ECE student preparing for GATE and learning Web Development.</p>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<ul>
+<li>C++</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>LOGO DESIGN</li>
+</ul>
+</section>
+<section id="skills">
+<h2> Software & Tools</h2>
+<ul>
+<li>MS WORD</li>
+<li>EXCEL</li>
+<li>POWERPOINT</li>
+
+</ul>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<p>login page , Portfolio website</p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: abhikumarg7230@gmail.com</p>
+<p>Phone: 7870309163</p>
+</section>
+
+<footer>
+<p>© 2026 Abhishek Kumar</p>
+</footer>
+
+<script>
+
+function uploadResume(){
+
+let fileInput = document.getElementById("resumeFile");
+
+if(fileInput.files.length === 0){
+document.getElementById("message").innerText = "Please select a file";
+return;
+}
+
+let file = fileInput.files[0];
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+// Save file
+localStorage.setItem("resumeData", e.target.result);
+localStorage.setItem("resumeName", file.name);
+
+// Show message
+document.getElementById("message").innerText = "Resume Uploaded Successfully";
+
+// Show download button
+let link = document.getElementById("downloadLink");
+link.href = e.target.result;
+link.download = file.name;
+link.style.display = "inline-block";
+};
+
+reader.readAsDataURL(file);
+}
+
+// Load saved file
+window.onload = function(){
+
+let data = localStorage.getItem("resumeData");
+let name = localStorage.getItem("resumeName");
+
+if(data && name){
+let link = document.getElementById("downloadLink");
+link.href = data;
+link.download = name;
+link.style.display = "inline-block";
+}
+
+};
+
+</script>
+
+</body>
+</html>
+```
